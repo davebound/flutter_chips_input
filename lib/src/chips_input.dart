@@ -120,6 +120,26 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
 
   RenderBox get renderBox => context.findRenderObject() as RenderBox;
 
+  // --------------------------------------------------------------------------
+  // DCB: Fix compiler error after upgrading flutter SDK to 2.13.0-0.2.pre
+  // See https://github.com/danvick/flutter_chips_input/issues/107
+  /*
+  Issue is this:
+  - LUU uses form_builder uses flutter_chips_input
+  - I upgraded to latest flutter sdk -> broke flutter_chips_input
+  - Fix is to add a few lines to flutter_chips_input. - which I can do in pub cache.... but that is obvs not a great idea
+  - Correct soln I guess would be to fork flutter_chips_input, and somehow get flutter_forms to use it
+  */
+
+  @override
+  void showToolbar() {}
+
+  @override
+  void insertTextPlaceholder(Size size) {}
+
+  @override
+  void removeTextPlaceholder() {}
+
   @override
   void initState() {
     super.initState();
